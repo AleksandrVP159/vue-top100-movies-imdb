@@ -16,8 +16,6 @@ onMounted(() => {
       state.userLoggedIn = true
     })
   }
-
-  movieStore.fetchMovies()
 })
 </script>
 
