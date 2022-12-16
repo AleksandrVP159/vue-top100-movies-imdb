@@ -1,7 +1,7 @@
 <template>
     <header id="header" class=" bg-gray-700">
         <nav class="container mx-auto flex justify-start items-center py-5 px-4">
-            <router-link class="text-white font-bold uppercase text-2xl mr-4" :to="{ name: 'home' }"
+            <router-link @click="reload" class="text-white font-bold uppercase text-2xl mr-4" :to="{ name: 'home' }"
                 exact-active-class="no-active">
                 Movies IMDb
             </router-link>
@@ -45,6 +45,12 @@ const signOut = () => {
 
     if (route.meta.requiresAuth) {
         router.push({ name: 'home' })
+    }
+}
+
+const reload = () => {
+    if (route.name === 'home') {
+        window.location.reload()
     }
 }
 
