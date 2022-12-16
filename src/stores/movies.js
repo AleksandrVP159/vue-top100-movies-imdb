@@ -16,6 +16,8 @@ export const useMovieStore = defineStore("movie", () => {
   const moviesPerPage = ref(10);
   const currentPage = ref(1);
   const movies = ref({});
+  const moviesAll = ref({});
+  const searchValue = ref("");
 
   const moviesLength = computed(() => Object.keys(top100IDs.value).length);
 
@@ -64,18 +66,22 @@ export const useMovieStore = defineStore("movie", () => {
         throw Error(response.Error);
       }
       const moviesfull = serializeResponse(response.Search);
-      movies.value = moviesfull;
+      moviesAll.value = moviesfull;
     } catch (err) {
       console.log(err);
     }
   }
 
+  /*   async function loadMoreSearchMovie() */
+
   return {
     top100IDs,
     movies,
+    moviesAll,
     moviesLength,
     moviesPerPage,
     currentPage,
+    searchValue,
     sliceIDs,
     fetchMovies,
     changeCurrentPage,
