@@ -50,7 +50,7 @@ const signOut = () => {
 
 const reload = () => {
     if (route.name === 'home') {
-        window.location.reload()
+        window.location.replace("?page=1")
     }
 }
 
