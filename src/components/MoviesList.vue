@@ -4,31 +4,25 @@
             <h3 class="text-4xl mb-6 mt-4 text-white">
                 IMDB Top 100
             </h3>
+            <!--  <Search /> -->
             <vue-awesome-paginate class="self-center" v-model="movieStore.currentPage"
                 :items-per-page="movieStore.moviesPerPage" :total-items="movieStore.moviesLength"
                 :on-click="onPageChanged" />
         </div>
-
         <div class="grid gap-4 grid-cols-5 grid-rows-2">
-            <template v-if="isExist">
-                <MovieItem v-for="(movie, key) in moviesStore.movies" :key="key" :movie="movie"
-                    @mouseover.native="onMouseOver(movie.Poster)" @mouseout.native="onMouseOut('')" />
-            </template>
-            <template v-else>
-                <div>
-                    Empty List
-                </div>
-            </template>
+            <MovieItem v-for="(movie, key) in moviesStore.movies" :key="key" :movie="movie"
+                @mouseover.native="onMouseOver(movie.Poster)" @mouseout.native="onMouseOut('')" />
         </div>
     </div>
 </template>
 
 <script setup>
 import { useMovieStore } from '../stores/movies.js'
-import { computed, watchEffect } from 'vue';
+import { watchEffect, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 import MovieItem from './MovieItem.vue';
+/* import Search from './Search.vue'; */
 
 const moviesStore = useMovieStore()
 
@@ -37,8 +31,6 @@ const emits = defineEmits(['changePoster', 'changeOutPoster'])
 const movieStore = useMovieStore()
 const router = useRouter()
 const route = useRoute()
-
-const isExist = computed(() => Boolean(Object.keys(moviesStore.movies).length))
 
 function onPageQueryChange({ page = 1 }) {
     movieStore.changeCurrentPage(Number(page))
@@ -62,6 +54,9 @@ watchEffect(() => {
     }
 })
 
+onMounted(() => {
+    movieStore.fetchMovies()
+})
 </script>
 
 <style>
