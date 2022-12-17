@@ -1,10 +1,10 @@
 <template>
     <div id="movie-list" class="container w-full px-4 mx-auto">
-        <div>
+        <div class="flex justify-between">
             <h3 class="text-4xl mb-6 mt-4 text-white">
                 IMDB All Films
             </h3>
-            <!--   <Search /> -->
+            <Search />
             <h3 class="text-4xl mb-6 mt-4 text-white">
                 Films with the title: {{ moviesStore.searchValue }}
             </h3>
@@ -20,7 +20,7 @@
 import { useMovieStore } from '../stores/movies.js'
 import { computed } from 'vue';
 import MovieItem from './MovieItem.vue';
-/* import Search from './Search.vue'; */
+import Search from './Search.vue';
 
 const moviesStore = useMovieStore()
 
