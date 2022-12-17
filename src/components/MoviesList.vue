@@ -4,7 +4,7 @@
             <h3 class="text-4xl mb-6 mt-4 text-white">
                 IMDB Top 100
             </h3>
-            <!--  <Search /> -->
+            <Search />
             <vue-awesome-paginate class="self-center" v-model="movieStore.currentPage"
                 :items-per-page="movieStore.moviesPerPage" :total-items="movieStore.moviesLength"
                 :on-click="onPageChanged" />
@@ -22,7 +22,7 @@ import { watchEffect, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
 import MovieItem from './MovieItem.vue';
-/* import Search from './Search.vue'; */
+import Search from './Search.vue';
 
 const moviesStore = useMovieStore()
 
