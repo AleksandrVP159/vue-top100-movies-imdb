@@ -18,6 +18,7 @@ export const useMovieStore = defineStore("movie", () => {
   const movies = ref({});
   const moviesAll = ref({});
   const searchValue = ref("");
+  const movieDetail = ref({});
 
   const moviesLength = computed(() => Object.keys(top100IDs.value).length);
 
@@ -72,6 +73,18 @@ export const useMovieStore = defineStore("movie", () => {
     }
   }
 
+  async function movieDetails(route) {
+    try {
+      const response = await axios.get(`/?i=${route.params.id}`);
+      if (response.Error) {
+        throw Error(response.Error);
+      }
+      movieDetail.value = response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   /*   async function loadMoreSearchMovie() */
 
   return {
@@ -82,10 +95,12 @@ export const useMovieStore = defineStore("movie", () => {
     moviesPerPage,
     currentPage,
     searchValue,
+    movieDetail,
     sliceIDs,
     fetchMovies,
     changeCurrentPage,
     searchMovie,
     removeMovie,
+    movieDetails,
   };
 });
