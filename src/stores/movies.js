@@ -62,7 +62,7 @@ export const useMovieStore = defineStore("movie", () => {
 
   async function searchMovie(query) {
     try {
-      const response = await axios.get(`/?s=${query}`);
+      const response = await axios.get(`/?s=${query}&type=movie`);
       if (response.Error) {
         throw Error(response.Error);
       }

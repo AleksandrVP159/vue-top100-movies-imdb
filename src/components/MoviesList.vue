@@ -54,9 +54,9 @@ watchEffect(() => {
     }
 })
 
-onMounted(() => {
+/* onMounted(() => {
     movieStore.fetchMovies()
-})
+}) */
 </script>
 
 <style>
